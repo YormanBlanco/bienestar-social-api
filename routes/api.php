@@ -23,6 +23,11 @@ Route::group(['middleware' => 'api'], function () {
     //Estudiante
     Route::resource('estudiante', 'EstudianteController', ['except' => ['create']]);
 
+    //Familia
+    Route::resource('family', 'FamilyController', ['except' => ['create']]);
+    //Area socioeconomica
+
+
 
 
 

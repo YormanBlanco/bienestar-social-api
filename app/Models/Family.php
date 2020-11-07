@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
-use App\Models\Family;
+use App\Models\Estudiante;
 
-class Estudiante extends Model
+class Family extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'estudiante';
+    protected $table = 'family';
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'lastnames', 'names', 'cedula', 'birth_date', 'place_birth', 'sex', 'email', 'twitter', 'movil_phone', 'local_phone','other_phone', 'address_origin', 'live_residence', 'address_residence', 'residence_phone', 'admission_university', 'carrer_or_pnf', 'admission_period', 'semestre_trayecto', 'turn', 'change_carrer', 'cause_change',
+        'estudiante_id','lastnames', 'names', 'sex', 'edad', 'parentesco', 'nivel_instruccion', 'profecion_oficio',  'ingreso_mensual',  'aporte_to_family', 
     ];
 
     protected $appends = [
@@ -28,13 +28,6 @@ class Estudiante extends Model
     public function getDateEsAttribute()
     {
         return Carbon::parse($this->created_at)->format('d-m-Y');
-    }
-
-    public function getBirthDateAttribute($value)
-    {
-        if ($value != null) {
-            return Carbon::parse($this->attributes['birth_date'])->format('d-m-Y');
-        }
     }
 
     public function getCreatedAtAttribute($value)
@@ -58,9 +51,9 @@ class Estudiante extends Model
         }
     }
 
-    public function family()
+    public function estudiante()
     {
-        return $this->hasMany(Family::class, 'estudiante_id', 'id');
+        return $this->belongsTo(Estudiante::class, 'estudiante_id');
     }
 
 }
