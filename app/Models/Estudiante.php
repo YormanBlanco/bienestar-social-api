@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use App\Models\Family;
+use App\Models\SocioEconomic;
 
 class Estudiante extends Model
 {
@@ -61,6 +62,11 @@ class Estudiante extends Model
     public function family()
     {
         return $this->hasMany(Family::class, 'estudiante_id', 'id');
+    }
+
+    public function socioeconomic()
+    {
+        return $this->hasOne(SocioEconomic::class, 'estudiante_id', 'id');
     }
 
 }

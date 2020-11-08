@@ -20,7 +20,7 @@ class EstudianteTableSeeder extends Seeder
             'lastnames'          => 'Blanco Carpio',
             'names'           => 'Yorman Alexander',
             'cedula'       => 'V-27049202',
-            'birth_date' => '06-01-2000',
+            'birth_date' => '2000-01-06',
             'place_birth'     => 'La victoria',
             'sex'     => 'Masculino',
             'email' => 'test@test.com',

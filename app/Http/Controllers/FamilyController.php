@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
-use App\Models\Estudiante;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
+use App\Models\Estudiante;
 use App\Http\Requests\FamilyRequest;
 use App\Constants\General;
 
@@ -21,7 +21,7 @@ class FamilyController extends Controller
             ->orderBy('id', 'DESC')
             ->get(); */
         return $family = Estudiante::with([
-            'family'
+            'family:id,lastnames,names,parentesco'
         ])
             ->select('id','names','lastnames')   
             ->orderBy('id', 'DESC')
@@ -52,7 +52,7 @@ class FamilyController extends Controller
 
     public function update(FamilyRequest $request, $id)
     {
-        $family = new Family();
+        $family = Family::find($id);
         $family->fill($request->all())->save();
         return response()->json(
             ['message'=>'Familiar actualizado satisfactoriamente', 'data'=>$family]);

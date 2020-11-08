@@ -26,7 +26,7 @@ Route::group(['middleware' => 'api'], function () {
     //Familia
     Route::resource('family', 'FamilyController', ['except' => ['create']]);
     //Area socioeconomica
-
+    Route::resource('socioeconomic', 'SocioEconomicController', ['except' => ['create']]);
 
 
 
