@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\SocioEconomic;
+use App\Models\Egresos;
 
 class Estudiante extends Model
 {
@@ -69,4 +70,8 @@ class Estudiante extends Model
         return $this->hasOne(SocioEconomic::class, 'estudiante_id', 'id');
     }
 
+    public function egresos()
+    {
+        return $this->hasOne(Egresos::class, 'estudiante_id', 'id');
+    }
 }

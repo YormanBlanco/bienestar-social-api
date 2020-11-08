@@ -24,9 +24,13 @@ Route::group(['middleware' => 'api'], function () {
     Route::resource('estudiante', 'EstudianteController', ['except' => ['create']]);
 
     //Familia
-    Route::resource('family', 'FamilyController', ['except' => ['create']]);
+    Route::resource('family', 'FamilyController');
     //Area socioeconomica
-    Route::resource('socioeconomic', 'SocioEconomicController', ['except' => ['create']]);
+    Route::get('socioeconomic/getfamily/{estudiante_id}', 'SocioEconomicController@getFamilyByEstudianteId')->name('getFamilyByEstudianteId');
+    Route::resource('socioeconomic', 'SocioEconomicController');
+
+    //Egresos
+    Route::resource('egresos', 'EgresosController');
 
 
 

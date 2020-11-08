@@ -21,12 +21,18 @@ class FamilyController extends Controller
             ->orderBy('id', 'DESC')
             ->get(); */
         return $family = Estudiante::with([
-            'family:id,lastnames,names,parentesco'
+            'family:id,lastnames,names,parentesco,aporte_to_family,ingreso_mensual,estudiante_id'
         ])
             ->select('id','names','lastnames')   
             ->orderBy('id', 'DESC')
             ->get();
 
+    }
+
+    public function create(){
+        return Estudiante::select('id','names','lastnames','cedula')
+            ->orderBy('id','DESC')
+            ->get();
     }
 
     public function store(FamilyRequest $request)

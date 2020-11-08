@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Carbon\Carbon;
 use App\Models\Estudiante;
+use App\Models\Family;
 use App\Http\Requests\SocioEconomicRequest;
 use App\Constants\General;
 
@@ -20,6 +21,17 @@ class SocioEconomicController extends Controller
             'family:id,estudiante_id,lastnames,names,parentesco'   
         ])           
             ->orderBy('id', 'DESC')
+            ->get();
+    }
+
+    public function create(){
+        return $estudiantes = Estudiante::select('id','names','lastnames','cedula')
+            ->orderBy('id','DESC')->get();
+    }
+
+    public function getFamilyByEstudianteId($estudiante_id){
+        return Family::select('id','estudiante_id','lastnames','names','parentesco','ingreso_mensual',  'aporte_to_family')
+            ->where('estudiante_id',$estudiante_id)
             ->get();
     }
 

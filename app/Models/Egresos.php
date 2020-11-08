@@ -8,19 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use App\Models\Estudiante;
-use App\Models\SocioEconomic;
-use App\Models\Egresos;
+use App\Models\Family;
 
-class Family extends Model
+class Egresos extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'family';
+    protected $table = 'egresos';
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'estudiante_id','lastnames', 'names', 'sex', 'edad', 'parentesco', 'nivel_instruccion', 'profecion_oficio',  'ingreso_mensual',  'aporte_to_family', 
+        'estudiante_id','vivienda', 'vivienda_gasto', 'transporte', 
+        'tv_cable','alimentacion','salud', 'otros', 'educacion', 
+        'aporte_to_family','recreacion','telefono', 'internet', 'agua',
+        'luz','gas','total_egresos','total_ingresos'
     ];
 
     protected $appends = [
@@ -56,11 +58,6 @@ class Family extends Model
     public function estudiante()
     {
         return $this->belongsTo(Estudiante::class, 'estudiante_id');
-    }
-
-    public function socioeconomic()
-    {
-        return $this->hasOne(SocioEconomic::class, 'family_id', 'id');
     }
 
 }
