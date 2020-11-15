@@ -15,6 +15,7 @@ class CreateViviendaTable extends Migration
     {
         Schema::create('vivienda', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('ubicacion',250);
             $table->integer('zona_urbana')->comment('0: Si, 1: No');
             $table->integer('zona_urbana_tipo')->comment('0: Urbanización, 1: Barrio, 3: Sector')->nullable();
             $table->integer('zona_rural')->comment('0: Si, 1: No');

@@ -32,6 +32,9 @@ Route::group(['middleware' => 'api'], function () {
     //Egresos
     Route::resource('egresos', 'EgresosController');
 
+    //Vivienda
+    Route::resource('vivienda', 'ViviendaController');
+
 
 
 
