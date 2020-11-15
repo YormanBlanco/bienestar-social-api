@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\SocioEconomic;
 use App\Models\Egresos;
+use App\Models\Vivienda;
 
 class Estudiante extends Model
 {
@@ -73,5 +74,10 @@ class Estudiante extends Model
     public function egresos()
     {
         return $this->hasOne(Egresos::class, 'estudiante_id', 'id');
+    }
+
+    public function vivienda()
+    {
+        return $this->hasOne(Vivienda::class, 'estudiante_id', 'id');
     }
 }
