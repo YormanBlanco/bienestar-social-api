@@ -35,6 +35,9 @@ Route::group(['middleware' => 'api'], function () {
     //Vivienda
     Route::resource('vivienda', 'ViviendaController');
 
+    //SaludEstudiante
+    Route::resource('saludestudiante', 'SaludEstudianteController');
+
 
 
 

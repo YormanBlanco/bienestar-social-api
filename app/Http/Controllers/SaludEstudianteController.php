@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vivienda;
+use App\Models\Salud_estudiante;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
-use App\Http\Requests\ViviendaRequest;
+use App\Http\Requests\SaludEstudianteRequest;
 use App\Constants\General;
 use Carbon\Carbon;
 
-class ViviendaController extends Controller
+class SaludEstudianteController extends Controller
 {
 
     public function index()
     {
-        return Vivienda::with([
+        return Salud_estudiante::with([
             'estudiante:id,lastnames,names,cedula'
         ])->paginate(General::PAGINATION_ITEMS);
     }
@@ -28,15 +28,15 @@ class ViviendaController extends Controller
 
     public function store(Request $request)
     {
-        $vivienda = new Vivienda();
-        $vivienda->fill($request->all())->save();
+        $salud = new Salud_estudiante();
+        $salud->fill($request->all())->save();
         return response()->json(
-            ['message'=>'Vivienda registrada satisfactoriamente', 'data'=>$vivienda]);
+            ['message'=>'Condiciones de salud registradas satisfactoriamente', 'data'=>$salud]);
     }
 
     public function show($id)
     {
-        return Vivienda::with([
+        return Salud_estudiante::with([
             'estudiante:id,lastnames,names,cedula'
         ])
             ->where('id', $id)
@@ -45,7 +45,7 @@ class ViviendaController extends Controller
 
     public function edit($id)
     {
-        return Vivienda::with([
+        return Salud_estudiante::with([
             'estudiante:id,lastnames,names,cedula'
         ])
             ->where('id', $id)
@@ -54,17 +54,17 @@ class ViviendaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $vivienda = Vivienda::findOrFail($id);
-        $vivienda->fill($request->all())->save();
+        $salud = Salud_estudiante::findOrFail($id);
+        $salud->fill($request->all())->save();
         return response()->json(
-            ['message'=>'Vivienda actualizada satisfactoriamente', 'data'=>$vivienda]);
+            ['message'=>'Condiciones de salud actualizadas satisfactoriamente', 'data'=>$salud]);
     }
 
     public function destroy($id)
     {
-        $vivienda = Vivienda::findOrFail($id);
-        $vivienda->delete();
+        $salud = Salud_estudiante::findOrFail($id);
+        $salud->delete();
         return response()->json(
-            ['message'=>'Vivienda eliminada satisfactoriamente']);
+            ['message'=>'Condiciones de salud eliminadas satisfactoriamente']);
     }
 }

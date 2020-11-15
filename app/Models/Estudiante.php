@@ -11,6 +11,7 @@ use App\Models\Family;
 use App\Models\SocioEconomic;
 use App\Models\Egresos;
 use App\Models\Vivienda;
+use App\Models\Salud_estudiante;
 
 class Estudiante extends Model
 {
@@ -79,5 +80,10 @@ class Estudiante extends Model
     public function vivienda()
     {
         return $this->hasOne(Vivienda::class, 'estudiante_id', 'id');
+    }
+
+    public function salud_estudiante()
+    {
+        return $this->hasOne(Salud_estudiante::class, 'estudiante_id', 'id');
     }
 }
