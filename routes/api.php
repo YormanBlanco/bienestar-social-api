@@ -38,6 +38,10 @@ Route::group(['middleware' => 'api'], function () {
     //SaludEstudiante
     Route::resource('saludestudiante', 'SaludEstudianteController');
 
+    //SocioFamiliar
+    Route::resource('sociofamiliar', 'SocioFamiliarController');
+
+
 
 
 
