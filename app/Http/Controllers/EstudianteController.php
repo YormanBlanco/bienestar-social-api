@@ -24,7 +24,7 @@ class EstudianteController extends Controller
             $estudiante->age = $birth_date;
         }
 
-        return $estudiantes;
+        return view('admin.estudiante', compact('estudiantes'));
         
     }
 
