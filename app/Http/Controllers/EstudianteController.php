@@ -24,8 +24,13 @@ class EstudianteController extends Controller
             $estudiante->age = $birth_date;
         }
 
-        return view('admin.estudiante', compact('estudiantes'));
+        return view('admin.estudiante.index', compact('estudiantes'));
         
+    }
+
+    public function create()
+    {
+        return view('admin.estudiante.create');
     }
 
     public function store(EstudianteRequest $request)
@@ -41,7 +46,7 @@ class EstudianteController extends Controller
     public function show($id)
     {
         $estudiante = Estudiante::find($id);
-        return $estudiante;
+        return view('admin.estudiante.show', compact('estudiante'));
     }
 
 

@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'api'], function () {
+/*Route::group(['middleware' => 'api'], function () {
 
     //Estudiante
     Route::resource('estudiante', 'EstudianteController', ['except' => ['create']]);
@@ -45,4 +45,4 @@ Route::group(['middleware' => 'api'], function () {
 
 
 
-});
+});*/
