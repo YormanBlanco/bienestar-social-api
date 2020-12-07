@@ -16,6 +16,7 @@ class EstudianteRequest extends FormRequest
     public function rules()
     {
         return [
+            //datos personales
             'lastnames' => 'required|string',
             'names' => 'required|string',
             'cedula'=> 'required|string', 
@@ -31,6 +32,7 @@ class EstudianteRequest extends FormRequest
             'live_residence'=> 'required', 
             'address_residence'=> 'nullable|string', 
             'residence_phone'=> 'nullable|string', 
+            //datos académicos
             'admission_university'=> 'required', 
             'carrer_or_pnf'=> 'required|string', 
             'admission_period'=> 'required|string', 

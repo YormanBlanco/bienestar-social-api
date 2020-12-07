@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\EstudianteRequest;
 use App\Constants\General;
@@ -12,19 +13,41 @@ use App\Constants\General;
 class EstudianteController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $estudiantes = Estudiante::select(
-            'id','names','lastnames','cedula','birth_date as age','sex'
-        )->paginate(General::PAGINATION_ITEMS);
-
-        foreach($estudiantes as $estudiante){
-            $birth_date = date("Y-m-d", strtotime($estudiante->age));
-            $birth_date = Carbon::createFromDate($birth_date)->age;
-            $estudiante->age = $birth_date;
+        if($request->get('search')){ //si hay uja busqueda
+            $search = $request->get('search');
+            $estudiantes = Estudiante::select(
+                'id','names','lastnames','cedula','birth_date as age','sex'
+            )
+                ->orWhere('names', 'LIKE', "%$search%")
+                ->orWhere('lastnames', 'LIKE', "%$search%")
+                ->orWhere('cedula', 'LIKE', "%$search%")
+                ->orWhere( DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')") , $search)
+                ->paginate(General::PAGINATION_ITEMS);
+    
+            foreach($estudiantes as $estudiante){
+                $birth_date = date("Y-m-d", strtotime($estudiante->age));
+                $birth_date = Carbon::createFromDate($birth_date)->age;
+                $estudiante->age = $birth_date;
+            }
+    
+            return view('admin.estudiante.index', compact('estudiantes'));
         }
-
-        return view('admin.estudiante.index', compact('estudiantes'));
+        else{
+            $estudiantes = Estudiante::select(
+                'id','names','lastnames','cedula','birth_date as age','sex'
+            )->paginate(General::PAGINATION_ITEMS);
+    
+            foreach($estudiantes as $estudiante){
+                $birth_date = date("Y-m-d", strtotime($estudiante->age));
+                $birth_date = Carbon::createFromDate($birth_date)->age;
+                $estudiante->age = $birth_date;
+            }
+    
+            return view('admin.estudiante.index', compact('estudiantes'));
+        }
+        
         
     }
 

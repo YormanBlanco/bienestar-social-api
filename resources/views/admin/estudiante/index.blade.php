@@ -17,7 +17,7 @@
     <!-- Search form -->
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
         <i class="fas fa-search" aria-hidden="true"></i>
-        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Buscar" aria-label="Search">
+        <input name="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Buscar" aria-label="Search">
     </form>
     <br>
     <table class="table table-hover">
@@ -44,17 +44,17 @@
                     <td> {{$es->sex}} </td>
                     <td> {{$es->date_es}} </td>
                     <td> 
-                        <a href="{{ url("estudiante/{$es->id}") }}" class="text-primary">
+                        <a title="Ver" href="{{ url("estudiante/{$es->id}") }}" class="text-primary">
                             <i class="fa fa-eye" aria-hidden="true"> </i>
                         </a>  
                     </td>
                     <td> 
-                        <a href="" class="text-info">
+                        <a title="Actualizar" href="" class="text-info">
                             <i class="fa fa-wrench" aria-hidden="true"></i>
                         </a>  
                     </td>
                     <td> 
-                        <a href="" class="text-danger">
+                        <a title="Eliminar" href="" class="text-danger">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>  
                     </td>
