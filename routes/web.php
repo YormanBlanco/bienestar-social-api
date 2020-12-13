@@ -37,3 +37,9 @@ Route::resource('saludestudiante', 'SaludEstudianteController');
 
 //SocioFamiliar
 Route::resource('sociofamiliar', 'SocioFamiliarController');
+
+//Trabajador social
+Route::resource('trabajadorsocial', 'TrabajadorSocialController');
+
+//Solicitud Beca
+Route::resource('solicitud', 'SolicitudBecaController');

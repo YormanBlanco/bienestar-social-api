@@ -30,9 +30,11 @@ class SocioEconomicController extends Controller
     }
 
     public function getFamilyByEstudianteId($estudiante_id){
-        return Family::select('id','estudiante_id','lastnames','names','parentesco','ingreso_mensual',  'aporte_to_family')
+        $family = Family::select('id','estudiante_id','lastnames','names','parentesco','ingreso_mensual',  'aporte_to_family')
             ->where('estudiante_id',$estudiante_id)
             ->get();
+
+        return view('admin.family.create', compact('family'));
     }
 
     public function store(SocioEconomicRequest $request)

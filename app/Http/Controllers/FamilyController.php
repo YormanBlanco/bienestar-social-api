@@ -30,17 +30,23 @@ class FamilyController extends Controller
     }
 
     public function create(){
-        return Estudiante::select('id','names','lastnames','cedula')
-            ->orderBy('id','DESC')
-            ->get();
+        $estudiante = Estudiante::select('id','names','lastnames','cedula')
+            ->orderBy('created_at','DESC')
+            ->get()->first();
+
+        return view('admin.family.create', compact('estudiante'));
     }
 
     public function store(FamilyRequest $request)
     {
         $family = new Family();
         $family->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Familiar creado satisfactoriamente', 'data'=>$family]);
+        // return response()->json(
+        //     ['message'=>'Familiar creado satisfactoriamente', 'data'=>$family]);
+
+        $estudiante_id = $family->estudiante_id;
+
+        return redirect('socioeconomic/getfamily/'. $estudiante_id);
     }
 
 

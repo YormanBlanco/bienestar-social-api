@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /*Route::group(['middleware' => 'api'], function () {
 
     //Estudiante
-    Route::resource('estudiante', 'EstudianteController', ['except' => ['create']]);
+    Route::resource('estudiante', 'EstudianteController');
 
     //Familia
     Route::resource('family', 'FamilyController');

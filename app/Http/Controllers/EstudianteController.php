@@ -18,31 +18,42 @@ class EstudianteController extends Controller
         if($request->get('search')){ //si hay uja busqueda
             $search = $request->get('search');
             $estudiantes = Estudiante::select(
-                'id','names','lastnames','cedula','birth_date as age','sex'
+                'id','names','lastnames','cedula','birth_date as age','sex','created_at as created'
             )
                 ->orWhere('names', 'LIKE', "%$search%")
                 ->orWhere('lastnames', 'LIKE', "%$search%")
                 ->orWhere('cedula', 'LIKE', "%$search%")
                 ->orWhere( DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y')") , $search)
+                ->orderBy('created_at', 'DESC')
+                ->orderBy('names', 'ASC')
+                ->orderBy('lastnames', 'ASC')
                 ->paginate(General::PAGINATION_ITEMS);
     
             foreach($estudiantes as $estudiante){
                 $birth_date = date("Y-m-d", strtotime($estudiante->age));
                 $birth_date = Carbon::createFromDate($birth_date)->age;
                 $estudiante->age = $birth_date;
+                $created = date("d-m-Y", strtotime($estudiante->created));
+                $estudiante->created = $created;
             }
     
             return view('admin.estudiante.index', compact('estudiantes'));
         }
         else{
             $estudiantes = Estudiante::select(
-                'id','names','lastnames','cedula','birth_date as age','sex'
-            )->paginate(General::PAGINATION_ITEMS);
+                'id','names','lastnames','cedula','birth_date as age','sex', 'created_at as created'
+            )
+                ->orderBy('created_at', 'DESC')
+                ->orderBy('names', 'ASC')
+                ->orderBy('lastnames', 'ASC')
+                ->paginate(General::PAGINATION_ITEMS);
     
             foreach($estudiantes as $estudiante){
                 $birth_date = date("Y-m-d", strtotime($estudiante->age));
                 $birth_date = Carbon::createFromDate($birth_date)->age;
                 $estudiante->age = $birth_date;
+                $created = date("d-m-Y", strtotime($estudiante->created));
+                $estudiante->created = $created;
             }
     
             return view('admin.estudiante.index', compact('estudiantes'));
@@ -60,9 +71,19 @@ class EstudianteController extends Controller
     {
         $estudiante = new Estudiante();
         $estudiante->birth_date = date('Y-m-d', strtotime($request->birth_date));
+        $estudiante->cedula = $request->cedula_tipo . '-' . $request->cedula;
+        if($request->movil_phone){
+            $estudiante->movil_phone = $request->movil_phone_code . '-' . $request->movil_phone;
+        }
+        if($request->other_phone){
+            $estudiante->other_phone = $request->other_phone_code . '-' . $request->other_phone;
+        }
         $estudiante->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Estudiante creado satisfactoriamente', 'data'=>$estudiante]);
+        // return response()->json(
+        //     ['message'=>'Estudiante creado satisfactoriamente', 'data'=>$estudiante]);
+        
+        //return redirect('estudiante')->with('message', '¡Estudiante creado satisfactoriamente!');
+        return redirect('family/create')->with('message', '¡Estudiante creado satisfactoriamente!');
     }
 
 

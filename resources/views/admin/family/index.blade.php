@@ -4,8 +4,8 @@
 
 @section('content_header')
     <h1>
-        Estudiantes 
-        <a href="{{ url("estudiante/create") }}" class="btn btn-primary pull-right">
+        Nuecleos familiares 
+        <a href="{{ url("family/create") }}" class="btn btn-primary pull-right">
             <i class="fa fa-plus" aria-hidden="true">  </i>
             Nuevo
         </a>

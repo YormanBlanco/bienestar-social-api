@@ -10,12 +10,34 @@
         </a>
         Nuevo estudiante
     </h1>
+
+    
+    @if(count($errors))
+        <br>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <br>
+    @endif
+    
+
 @stop
 
 @section('content')
     
 <div class="container">
     <form action="{{url('estudiante')}}" method="POST" enctype="multipart/form-data" novalidate>
+        {{csrf_field()}}
+            
         
         <div id="datospersonales" class="col-md-12">
 
@@ -23,12 +45,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="names">Nombres</label>
-                    <input required type="text" class="form-control" placeholder="Nombres"  name="names">
+                    <input required type="text" class="form-control" placeholder="Nombres"  name="names"  value="{{ old('names') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="lastnames">Apellidos</label>
-                    <input required type="text" class="form-control" placeholder="Apellidos" name="lastnames">
+                    <input required type="text" class="form-control" placeholder="Apellidos" name="lastnames" value="{{ old('lastnames') }}">
                 </div>
             </div>
 
@@ -37,18 +59,18 @@
                 <div class="form-group col-md-1">
                     <label for="cedula_tipo">Tipo</label>
                     <select required name="cedula_tipo" class="form-control">
-                        <option selected value="V" >V</option>
-                        <option value="E" >E</option>
+                        <option selected value="V" {{ old('cedula_tipo') =='V' ? 'selected' : '' }}>V</option>
+                        <option value="E" {{ old('cedula_tipo') =='E' ? 'selected' : '' }} >E</option>
                     </select>
                 </div>
                 <div class="form-group col-md-5">
                     <label for="cedula">Cédula de identidad</label>
-                    <input required type="num" class="form-control" placeholder="Cédula de identidad"  name="cedula">
+                    <input required type="num" class="form-control" placeholder="Cédula de identidad"  name="cedula" value="{{ old('cedula') }}">
                 </div>
                 
                 <div class="form-group col-md-6">
                     <label for="birth_date">Fecha de nacimiento</label>
-                    <input required type="date" class="form-control" placeholder="Fecha de nacimiento" name="birth_date">
+                    <input required type="date" class="form-control" placeholder="Fecha de nacimiento" name="birth_date" value="{{ old('birth_date') }}">
                 </div>
 
             </div>
@@ -56,15 +78,15 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="place_birth">Lugar de nacimiento</label>
-                    <input required type="text" class="form-control" placeholder="Lugar de nacimiento"  name="place_birth">
+                    <input required type="text" class="form-control" placeholder="Lugar de nacimiento"  name="place_birth" value="{{ old('place_birth') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="sex">Sexo</label>
-                    <select required name="cedula_tipo" class="form-control">
+                    <select required name="sex" class="form-control">
                         <option disabled selected>Seleccione</option>
-                        <option value="Femenino" >Femenino</option>
-                        <option value="Masculino" >Masculino</option>
+                        <option value="Femenino" {{ old('sex') =='Femenino' ? 'selected' : '' }} >Femenino</option>
+                        <option value="Masculino" {{ old('sex') =='Masculino' ? 'selected' : '' }} >Masculino</option>
                     </select>
                 </div>
             </div>
@@ -72,12 +94,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" placeholder="Email"  name="email">
+                    <input type="email" class="form-control" placeholder="Email"  name="email" value="{{ old('email') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="twitter">Twitter</label>
-                    <input type="text" class="form-control" placeholder="Twitter"  name="twitter">
+                    <input type="text" class="form-control" placeholder="Twitter"  name="twitter" value="{{ old('twitter') }}">
                 </div>
             </div>
 
@@ -86,21 +108,21 @@
                     <label for="movil_phone_code">Código</label>
                     <select name="movil_phone_code" class="form-control">
                         <option disabled selected>Seleccione</option>
-                        <option value="0412" >0412</option>
-                        <option value="0414" >0414</option>
-                        <option value="0424" >0424</option>
-                        <option value="0426" >0426</option>
-                        <option value="0416" >0416</option>
+                        <option value="0412" {{ old('movil_phone_code') =='0412' ? 'selected' : '' }} >0412</option>
+                        <option value="0414" {{ old('movil_phone_code') =='0414' ? 'selected' : '' }} >0414</option>
+                        <option value="0424" {{ old('movil_phone_code') =='0424' ? 'selected' : '' }} >0424</option>
+                        <option value="0426" {{ old('movil_phone_code') =='0426' ? 'selected' : '' }} >0426</option>
+                        <option value="0416" {{ old('movil_phone_code') =='0416' ? 'selected' : '' }} >0416</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="movil_phone">Teléfono móvil</label>
-                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="movil_phone">
+                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="movil_phone" value="{{ old('movil_phone') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="local_phone">Teléfono local</label>
-                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="local_phone">
+                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="local_phone" value="{{ old('local_phone') }}">
                 </div>
             </div>
 
@@ -109,41 +131,41 @@
                     <label for="other_phone_code">Código</label>
                     <select name="other_phone_code" class="form-control">
                         <option disabled selected>Seleccione</option>
-                        <option value="0412" >0412</option>
-                        <option value="0414" >0414</option>
-                        <option value="0424" >0424</option>
-                        <option value="0426" >0426</option>
-                        <option value="0416" >0416</option>
+                        <option value="0412" {{ old('other_phone_code') =='0412' ? 'selected' : '' }} >0412</option>
+                        <option value="0414" {{ old('other_phone_code') =='0414' ? 'selected' : '' }} >0414</option>
+                        <option value="0424" {{ old('other_phone_code') =='0424' ? 'selected' : '' }} >0424</option>
+                        <option value="0426" {{ old('other_phone_code') =='0426' ? 'selected' : '' }} >0426</option>
+                        <option value="0416" {{ old('other_phone_code') =='0416' ? 'selected' : '' }} >0416</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="other_phone">Teléfono alternativo</label>
-                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="other_phone">
+                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="other_phone" value="{{ old('other_phone') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="address_origin">Dirección de origen</label>
-                    <input required type="tex" class="form-control" placeholder="Dirección de origen"  name="address_origin">
+                    <input required type="tex" class="form-control" placeholder="Dirección de origen"  name="address_origin" value="{{ old('address_origin') }}">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="live_residence">¿Vive en residencia?</label>
-                    <select required id="live_residence" name="live_residence" class="form-control" onChange="mostrar(this.value);">
+                    <select required id="live_residence" name="live_residence" class="form-control" onChange="mostrar(this.value);" value="{{ old('live_residence') }}">
                         <option disabled selected>Seleccione</option>
-                        <option value="si">Si</option>
-                        <option value="no">No</option>
+                        <option value="Si" {{ old('live_residence') =='Si' ? 'selected' : '' }} >Si</option>
+                        <option value="No" {{ old('live_residence') =='No' ? 'selected' : '' }} >No</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4"  id="address_residence" style="display: none;">
                     <label for="address_residence">Dirección de residencia</label>
-                    <input type="tex" class="form-control" placeholder="Dirección de origen"  name="address_residence">
+                    <input type="tex" class="form-control" placeholder="Dirección de origen"  name="address_residence" value="{{ old('address_residence') }}">
                 </div>
 
                 <div class="form-group col-md-6" id="residence_phone" style="display: none;">
                     <label for="residence_phone">Teléfono de residencia</label>
-                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="residence_phone">
+                    <input type="tel" pattern="[0-7]{7}" class="form-control" placeholder=""  name="residence_phone" value="{{ old('residence_phone') }}">
                 </div>
  
             </div>
@@ -175,27 +197,27 @@
                     <label for="admission_university">Ingreso a la universidad</label>
                     <select required name="admission_university" class="form-control">
                         <option disabled selected>Seleccione</option>
-                        <option value="Opsu"> Opsu </option>
-                        <option value="Convenio"> Convenio </option>
-                        <option value="Otro"> Otro </option>
+                        <option value="0" {{ old('admission_university') =='0' ? 'selected' : '' }} > Opsu </option>
+                        <option value="1" {{ old('admission_university') =='1' ? 'selected' : '' }} > Convenio </option>
+                        <option value="2" {{ old('admission_university') =='2' ? 'selected' : '' }} > Otro </option>
                     </select>
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="carrer_or_pnf">Carreca o PNF</label>
-                    <input type="tex" class="form-control" placeholder="Carrera o PNF"  name="carrer_or_pnf">
+                    <input type="tex" class="form-control" placeholder="Carrera o PNF"  name="carrer_or_pnf" value="{{ old('carrer_or_pnf') }}">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="admission_period">Período de ingreso</label>
-                    <input type="tex" class="form-control" placeholder="Período de ingreso"  name="admission_period">
+                    <input type="tex" class="form-control" placeholder="Período de ingreso"  name="admission_period" value="{{ old('admission_period') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="semestre_trayecto">Semestre o Trayecto</label>
-                    <input type="tex" class="form-control" placeholder="Semestre o Trayecto"  name="semestre_trayecto">
+                    <input type="tex" class="form-control" placeholder="Semestre o Trayecto"  name="semestre_trayecto" value="{{ old('semestre_trayecto') }}">
                 </div>
                
             </div>
@@ -203,21 +225,21 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="turn">Turno</label>
-                    <input type="tex" class="form-control" placeholder="Turno"  name="turn">
+                    <input type="tex" class="form-control" placeholder="Turno"  name="turn" value="{{ old('turn') }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="change_carrer">¿Ha realizado cambio de carrera o PNF?</label>
                     <select required id="change_carrer" name="change_carrer" class="form-control" onChange="changeCarrer(this.value);">
                         <option disabled selected>Seleccione</option>
-                        <option value="si">Si</option>
-                        <option value="no">No</option>
+                        <option value="0" {{ old('change_carrer') =='0' ? 'selected' : '' }} >Si</option>
+                        <option value="1" {{ old('change_carrer') =='1' ? 'selected' : '' }} >No</option>
                     </select>
                 </div>
 
                 <div class="form-group col-md-12" id="cause_change" style="display: none;">
                     <label for="cause_change">Causa del cambio</label>
-                    <input type="text" class="form-control" placeholder=""  name="cause_change">
+                    <input type="text" class="form-control" placeholder=""  name="cause_change" value="{{ old('cause_change') }}">
                 </div>
             </div>
 
@@ -229,7 +251,7 @@
                     Anterior página
                 </button> 
                 <button type="submit" class="btn btn-success pull-center">
-                    Guardar
+                    Registrar
                 </button> 
             </div>
             <br>

@@ -13,6 +13,7 @@ use App\Models\Egresos;
 use App\Models\Vivienda;
 use App\Models\Salud_estudiante;
 use App\Models\Socio_familiar;
+use App\Models\SolicitudBeca;
 
 class Estudiante extends Model
 {
@@ -91,5 +92,10 @@ class Estudiante extends Model
     public function socio_familiar()
     {
         return $this->hasOne(Socio_familiar::class, 'estudiante_id', 'id');
+    }
+
+    public function solicitud_beca()
+    {
+        return $this->hasMany(SolicitudBeca::class, 'estudiante_id', 'id');
     }
 }
