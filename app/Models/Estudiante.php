@@ -24,7 +24,7 @@ class Estudiante extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'lastnames', 'names', 'cedula', 'birth_date', 'place_birth', 'sex', 'email', 'twitter', 'movil_phone', 'local_phone','other_phone', 'address_origin', 'live_residence', 'address_residence', 'residence_phone', 'admission_university', 'carrer_or_pnf', 'admission_period', 'semestre_trayecto', 'turn', 'change_carrer', 'cause_change',
+        'lastnames', 'names', 'cedula', 'cedula_tipo', 'birth_date', 'place_birth', 'sex', 'email', 'twitter', 'movil_phone', 'local_phone','other_phone', 'address_origin', 'live_residence', 'address_residence', 'residence_phone', 'admission_university', 'carrer_or_pnf', 'admission_period', 'semestre_trayecto', 'turn', 'change_carrer', 'cause_change',
     ];
 
     protected $appends = [

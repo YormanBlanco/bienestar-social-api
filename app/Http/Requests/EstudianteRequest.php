@@ -15,12 +15,16 @@ class EstudianteRequest extends FormRequest
   
     public function rules()
     {
+        $validar_update = $this->get('id') > 0 ? $this->get('id') : "NULL";
+
         return [
             //datos personales
             'lastnames' => 'required|string',
             'names' => 'required|string',
-            'cedula'=> 'required|string', 
+            //'cedula'=> ['required', 'string', 'unique:estudiante,cedula'], 
             'cedula_tipo'=> 'required|string',
+            'cedula'=> ['required', 'string'], 
+            'cedula' => 'unique:estudiante,cedula,' . $validar_update . ',id,cedula_tipo,' . $this->get('cedula_tipo'), //validando campo unico compuesto
             'birth_date'=> 'required', 
             'place_birth'=> 'required|string', 
             'sex'=> 'required|string', 
@@ -52,6 +56,7 @@ class EstudianteRequest extends FormRequest
             'lastnames.required' => 'El campo :attribute es obligatorio.',
             'names.required' => 'El campo :attribute es obligatorio.',
             'cedula.required' => 'El campo :attribute es obligatorio.',
+            'cedula.unique' => 'Ya existe un estudiante con el documento de identidad digitado.',
             'birth_date.required' => 'El campo :attribute es obligatorio.',
             'place_birth.required' => 'El campo :attribute es obligatorio.',
             'sex.required' => 'El campo :attribute es obligatorio.',
@@ -77,7 +82,7 @@ class EstudianteRequest extends FormRequest
             'place_birth'=> 'lugar de nacimiento', 
             'sex'=> 'sexo', 
             'email'=> 'email', 
-            'address_origin'=> 'dirección de procedencia', 
+            'address_origin'=> 'dirección de origen', 
             'live_residence'=> 'vive en residencia',   
             'admission_university'=> 'ingreso a la universidad', 
             'carrer_or_pnf'=> 'carrera o pnf', 

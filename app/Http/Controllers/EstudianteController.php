@@ -18,7 +18,7 @@ class EstudianteController extends Controller
         if($request->get('search')){ //si hay uja busqueda
             $search = $request->get('search');
             $estudiantes = Estudiante::select(
-                'id','names','lastnames','cedula','birth_date as age','sex','created_at as created'
+                'id','names','lastnames','cedula_tipo','cedula','birth_date as age','sex','created_at as created'
             )
                 ->orWhere('names', 'LIKE', "%$search%")
                 ->orWhere('lastnames', 'LIKE', "%$search%")
@@ -41,7 +41,7 @@ class EstudianteController extends Controller
         }
         else{
             $estudiantes = Estudiante::select(
-                'id','names','lastnames','cedula','birth_date as age','sex', 'created_at as created'
+                'id','names','lastnames','cedula_tipo','cedula','birth_date as age','sex', 'created_at as created'
             )
                 ->orderBy('created_at', 'DESC')
                 ->orderBy('names', 'ASC')
@@ -55,7 +55,6 @@ class EstudianteController extends Controller
                 $created = date("d-m-Y", strtotime($estudiante->created));
                 $estudiante->created = $created;
             }
-    
             return view('admin.estudiante.index', compact('estudiantes'));
         }
         
@@ -70,19 +69,19 @@ class EstudianteController extends Controller
     public function store(EstudianteRequest $request)
     {
         $estudiante = new Estudiante();
+        $estudiante->fill($request->except('birth_date', 'cedula', 'cedula_tipo', 'movil_phone', 'other_phone'));
         $estudiante->birth_date = date('Y-m-d', strtotime($request->birth_date));
-        $estudiante->cedula = $request->cedula_tipo . '-' . $request->cedula;
+        $estudiante->cedula_tipo = $request->cedula_tipo;
+        $estudiante->cedula = $request->cedula;
         if($request->movil_phone){
             $estudiante->movil_phone = $request->movil_phone_code . '-' . $request->movil_phone;
         }
         if($request->other_phone){
             $estudiante->other_phone = $request->other_phone_code . '-' . $request->other_phone;
         }
-        $estudiante->fill($request->all())->save();
-        // return response()->json(
-        //     ['message'=>'Estudiante creado satisfactoriamente', 'data'=>$estudiante]);
         
-        //return redirect('estudiante')->with('message', '¡Estudiante creado satisfactoriamente!');
+        $estudiante->save();
+
         return redirect('family/create')->with('message', '¡Estudiante creado satisfactoriamente!');
     }
 

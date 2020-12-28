@@ -55,7 +55,7 @@
                     <td> {{ ($estudiantes->currentpage()-1) * $estudiantes->perpage() + $loop->index + 1 }} </td>
                     <td> {{$es->names}} </td>
                     <td> {{$es->lastnames}} </td>
-                    <td> {{$es->cedula}} </td>
+                    <td> {{$es->cedula_tipo}}-{{$es->cedula}} </td>
                     <td> {{$es->age}} </td>
                     <td> {{$es->sex}} </td>
                     <td> {{$es->created}} </td>

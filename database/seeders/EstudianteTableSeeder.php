@@ -27,7 +27,7 @@ class EstudianteTableSeeder extends Seeder
             'address_origin'     => 'La victoria',
             'live_residence'     => 'No',
             'admission_university'     => 0,
-            'carrer_or_pnf'     => 'PNF indormatica',
+            'carrer_or_pnf'     => 'PNF informática',
             'admission_period'     => '2017',
             'semestre_trayecto'     => '3er trayecto',
             'turn'     => 'Mañana',
