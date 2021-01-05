@@ -26,6 +26,22 @@
         <br>
     @endif
 
+    <!-- mensaje de eliminacion -->
+    @if(session('delete'))
+        <br>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <ul>
+                <li>{{session('delete')}}</li>
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <br>
+    @endif
+
 @stop
 
 @section('content')
@@ -45,8 +61,8 @@
                 <th scope="col">CI</th>
                 <th scope="col">Edad</th>
                 <th scope="col">Sexo</th>
-                <th scope="col">Frecha de registro</th>
-                <th colspan="3">Acciones&nbsp; </th>
+                <th scope="col">Fecha de registro</th>
+                <th colspan="2">Acciones&nbsp; </th>
             </tr>
         </thead>
         <tbody>
@@ -69,12 +85,13 @@
                             <i class="fa fa-wrench" aria-hidden="true"></i>
                         </a>  
                     </td>
-                    <td> 
-                        <a title="Eliminar" href="" class="text-danger">
+                    <!-- <td> 
+                        <a title="Eliminar" class="text-danger" data-toggle="modal" data-target="#modal-delete-{{$es->id}}">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>  
-                    </td>
+                    </td> -->
                 </tr>
+                <!-- @include('admin.estudiante.modal-delete') -->
             @endforeach
         </tbody>
     </table>

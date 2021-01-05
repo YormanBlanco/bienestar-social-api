@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EstudianteRequest;
 use App\Constants\General;
 
+use Barryvdh\DomPDF\Facade as PDF;
+
 class EstudianteController extends Controller
 {
 
@@ -88,8 +90,12 @@ class EstudianteController extends Controller
 
     public function show($id)
     {
-        $estudiante = Estudiante::find($id);
-        return view('admin.estudiante.show', compact('estudiante'));
+        $estudiante = Estudiante::where('id', $id)->get();
+        //return view('admin.estudiante.show', compact('estudiante'));
+        $pdf = PDF::loadView('admin.estudiante.pdf', compact('estudiante'));
+        $name = $estudiante[0]->names . $estudiante[0]->lastnames . $estudiante[0]->cedula;
+        return view('admin.estudiante.pdf');
+        return $pdf->download($name.'.pdf');
     }
 
 
@@ -114,7 +120,6 @@ class EstudianteController extends Controller
     {
         $estudiante = Estudiante::findOrFail($id);
         $estudiante->delete();
-        return response()->json(
-            ['message'=>'Estudiante eliminado satisfactoriamente']);
+        return redirect('estudiante')->with('delete', '¡Estudiante eliminado satisfactoriamente!');
     }
 }

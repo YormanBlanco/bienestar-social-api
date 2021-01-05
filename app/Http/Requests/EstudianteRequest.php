@@ -21,7 +21,6 @@ class EstudianteRequest extends FormRequest
             //datos personales
             'lastnames' => 'required|string',
             'names' => 'required|string',
-            //'cedula'=> ['required', 'string', 'unique:estudiante,cedula'], 
             'cedula_tipo'=> 'required|string',
             'cedula'=> ['required', 'string'], 
             'cedula' => 'unique:estudiante,cedula,' . $validar_update . ',id,cedula_tipo,' . $this->get('cedula_tipo'), //validando campo unico compuesto
