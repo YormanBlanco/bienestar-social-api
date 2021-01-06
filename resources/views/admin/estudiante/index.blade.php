@@ -42,6 +42,22 @@
         <br>
     @endif
 
+    <!-- mensaje de actualizacion -->
+    @if(session('edit'))
+        <br>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <ul>
+                <li>{{session('edit')}}</li>
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <br>
+    @endif
+
 @stop
 
 @section('content')
@@ -81,7 +97,7 @@
                         </a>  
                     </td>
                     <td> 
-                        <a title="Actualizar" href="" class="text-info">
+                        <a title="Actualizar" href="{{ url("estudiante/{$es->id}/edit") }}" class="text-info">
                             <i class="fa fa-wrench" aria-hidden="true"></i>
                         </a>  
                     </td>

@@ -15,7 +15,8 @@ class EstudianteRequest extends FormRequest
   
     public function rules()
     {
-        $validar_update = $this->get('id') > 0 ? $this->get('id') : "NULL";
+        //$validar_update = $this->get('id') > 0 ? $this->get('id') : "NULL";
+        $validar_update =  $this->estudiante > 0 ? $this->estudiante : "NULL";
 
         return [
             //datos personales

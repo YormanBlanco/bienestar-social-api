@@ -102,17 +102,25 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        return $estudiante;
+        $birth_date = $estudiante->birth_date;
+        $birth_date = date('Y-m-d', strtotime($birth_date));
+        return view(
+            'admin.estudiante.edit', 
+            [              
+                'id'=>$id,
+                'estudiante'=>$estudiante,
+                'birth_date'=>$birth_date,
+            ]
+        );
     }
 
 
-    public function update(Request $request, $id)
+    public function update(EstudianteRequest $request, $id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        $estudiante->birth_date = date('Y-m-d', strtotime($request->birth_date));
         $estudiante->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Estudiante actualizado satisfactoriamente', 'data'=>$estudiante]);
+        $estudiante->birth_date = date('Y-m-d', strtotime($request->birth_date));
+        return redirect('estudiante')->with('edit', '¡Estudiante actualizado satisfactoriamente!');
     }
 
 
