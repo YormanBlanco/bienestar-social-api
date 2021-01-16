@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class, //barryvdhddompdf
+        Tightenco\Ziggy\ZiggyServiceProvider::class, //ziggy (para obtener routes en los templates blade)
 
     ],
 

@@ -30,7 +30,7 @@ class FamilyController extends Controller
     }
 
     public function create(){
-        $estudiante = Estudiante::select('id','names','lastnames','cedula')
+        $estudiante = Estudiante::select('id','names','lastnames','cedula','cedula_tipo')
             ->orderBy('created_at','DESC')
             ->get()->first();
 
@@ -44,9 +44,7 @@ class FamilyController extends Controller
         // return response()->json(
         //     ['message'=>'Familiar creado satisfactoriamente', 'data'=>$family]);
 
-        $estudiante_id = $family->estudiante_id;
-
-        return redirect('socioeconomic/getfamily/'. $estudiante_id);
+        return redirect('family/create')->with('msg', '¡Familiar creado satisfactoriamente!');
     }
 
 
