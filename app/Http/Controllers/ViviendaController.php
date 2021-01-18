@@ -21,9 +21,11 @@ class ViviendaController extends Controller
 
     public function create()
     {
-        return Estudiante::select('id','names','lastnames','cedula')
-            ->orderBy('id','DESC')
-            ->get();
+        $estudiante = Estudiante::select('id','names','lastnames','cedula','cedula_tipo')
+            ->orderBy('created_at','DESC')
+            ->get()->first();
+
+        return view('admin.vivienda.create', compact('estudiante'));
     }
 
     public function store(Request $request)

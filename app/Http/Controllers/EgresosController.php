@@ -22,29 +22,37 @@ class EgresosController extends Controller
     }
 
     public function create(){
-        return Estudiante::select('id','names','lastnames','cedula')
-            ->orderBy('id','DESC')
-            ->get();
+        $estudiante = Estudiante::select('id','names','lastnames','cedula','cedula_tipo')
+            ->orderBy('created_at','DESC')
+            ->get()->first();
+
+        $family = Family::select('id', 'names', 'lastnames', 'aporte_to_family', 'ingreso_mensual')
+            ->where('estudiante_id', $estudiante->id)->get();
+      
+        $aporte_familiar = 0;
+        $total_ingresos = 0;
+        //return $family[0]->aporte_to_family;
+        foreach ($family as $fa){
+            $aporte_familiar = $aporte_familiar + $fa->aporte_to_family;
+            $total_ingresos = $total_ingresos + $fa->ingreso_mensual;
+        }
+
+        $data = ['estudiante' => $estudiante, 
+            'aporte_familiar'=>$aporte_familiar, 
+            'total_ingresos'=>$total_ingresos
+        ];
+
+        return view('admin.family.egresos.create', compact('estudiante', 'aporte_familiar', 'total_ingresos'));
     }
 
     public function store(EgresosRequest $request)
     {
-        //suma aporte_to_family de los familaires
-        $aporte_to_family = Family::select('aporte_to_family')->where('estudiante_id',$request->estudiante_id)->sum('aporte_to_family');
-
-        //suma ingreso_mensual de los familiares
-        $total_ingresos = Family::select('ingreso_mensual')->where('estudiante_id',$request->estudiante_id)->sum('ingreso_mensual');
-
-        //suma de todos los egresos
-        $total_egresos = collect($request->except('vivienda_gasto','estudiante_id','vivienda'))->sum();
-
         $egresos = new Egresos();
-        $egresos->aporte_to_family = $aporte_to_family;
-        $egresos->total_ingresos = $total_ingresos;
-        $egresos->total_egresos = $total_egresos;
         $egresos->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Egresos registrados satisfactoriamente', 'data'=>$egresos]);
+        
+        return redirect('vivienda/create')->with('message', '¡Egresos registrados satisfactoriamente!');
+
+
     }
 
     public function show($id)

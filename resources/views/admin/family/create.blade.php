@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Registrar familiares')
+@section('title', 'Familiares')
 
 @section('content_header')
     <h1>       
@@ -13,15 +13,6 @@
 
     @if(session('message'))
         <br>
-
-        <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <ul>
-                <li>{{session('message')}}</li>
-            </ul>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div> -->
 
         @section('js')
             <script type="text/javascript">
@@ -39,15 +30,6 @@
 
     @if(session('msg'))
         <br>
-
-        <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <ul>
-                <li>{{session('msg')}}</li>
-            </ul>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div> -->
         
         @section('js')
             @routes
@@ -99,20 +81,6 @@
 @section('content')
     
 <div class="container">
-
-    @if($family ?? '')
-        
-        <form action="{{url('socioeconomic')}}" method="POST" enctype="multipart/form-data" novalidate>
-            {{csrf_field()}}
-                
-            <h2> Área socio-económica </h2>
-
-            
-
-        </form>
-
-    @else
-    
 
         <form action="{{url('family')}}" method="POST" enctype="multipart/form-data" novalidate>
             {{csrf_field()}}
@@ -204,7 +172,7 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="lastnames">Ingreso mensual</label>
+                        <label for="ingreso_mensual">Ingreso mensual</label>
                         <input required type="text" class="form-control" placeholder="Ingreso mensual" name="ingreso_mensual" value="{{ old('ingreso_mensual') }}" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                         @if ($errors->has('ingreso_mensual'))
                             <small class="form-text text-danger">
@@ -214,7 +182,7 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="lastnames">Aporte familiar</label>
+                        <label for="aporte_to_family">Aporte familiar</label>
                         <input required type="text" class="form-control" placeholder="Aporte familiar" name="aporte_to_family" value="{{ old('aporte_to_family') }}" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                         @if ($errors->has('aporte_to_family'))
                             <small class="form-text text-danger">
@@ -225,7 +193,7 @@
 
                 </div>
 
-                <!-- Boton regresar -->
+                <!-- Boton registrar -->
                 <br>
                 <div class="col-md-12 text-center"> 
                     <button type="submit" class="btn btn-success pull-center">
@@ -241,7 +209,6 @@
 
         </form>
 
-    @endif
 </div>
 
 

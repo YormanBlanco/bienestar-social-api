@@ -30,19 +30,23 @@ class SocioEconomicController extends Controller
     }
 
     public function getFamilyByEstudianteId($estudiante_id){
-        $family = Family::select('id','estudiante_id','lastnames','names','parentesco','ingreso_mensual',  'aporte_to_family')
-            ->where('estudiante_id',$estudiante_id)
+        $estudiante = Estudiante::with([
+            'family:id,lastnames,names,parentesco,aporte_to_family,ingreso_mensual,estudiante_id'
+            ])
+            ->select('id','names','lastnames', 'cedula','cedula_tipo') 
+            ->where('id',$estudiante_id)
             ->get();
 
-        return view('admin.family.create', compact('family'));
+        $estudiante = $estudiante[0];
+        $msg = '¡Núcleo familiar creado satisfactoriamente!';
+        return view('admin.family.socioeconomic.create', compact('estudiante'));
     }
 
     public function store(SocioEconomicRequest $request)
     {
         $socioeconomic = new SocioEconomic();
         $socioeconomic->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Estudio socio-económico creado satisfactoriamente', 'data'=>$socioeconomic]);
+        return redirect('egresos/create')->with('message', 'Estudio socio-económico creado satisfactoriamente');
     }
 
 

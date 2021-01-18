@@ -15,6 +15,7 @@ class SocioEconomicRequest extends FormRequest
     public function rules()
     {
         return [      
+            'family_id' => 'required',
             'monto_aporte'=> 'required', 
             'beca'=> 'required',
             'organismo_beca'=> 'nullable',
@@ -24,14 +25,14 @@ class SocioEconomicRequest extends FormRequest
     public function messages()
     {
         return [
-            'monto_aporte.required' => 'El campo :attribute es obligatorio.',
-            'beca.required' => 'El campo :attribute es obligatorio.',
+            'required' => 'El campo :attribute es obligatorio.',
         ];
     }
 
     public function attributes()
     {
         return [
+            'family_id' => '¿Quién sufraga gastos del estudiante?',
             'monto_aporte' => 'Monto del aporte',
             'beca' => 'Beca', 
             'organismo_beca'=> 'Organismo que otorgó la beca', 
