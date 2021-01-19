@@ -32,8 +32,7 @@ class ViviendaController extends Controller
     {
         $vivienda = new Vivienda();
         $vivienda->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Vivienda registrada satisfactoriamente', 'data'=>$vivienda]);
+        return redirect('saludestudiante/create')->with('message', 'Área físico-ambiental registrada satisfactoriamente');
     }
 
     public function show($id)

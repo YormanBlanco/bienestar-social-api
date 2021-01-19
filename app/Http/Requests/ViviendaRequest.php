@@ -54,6 +54,16 @@ class ViviendaRequest extends FormRequest
             'cafetera' => 'required', 
             'celular' => 'required', 
             'aire_acondicionado' => 'required',
+            //servicios publicos
+            'electricidad' => 'required' , 
+            'aguas_blancas' => 'required' , 
+            'aguas_servidas' => 'required' , 
+            'gas_tuberia' => 'required' , 
+            'gas_bombona' => 'required' , 
+            'recoleccion_desechos' => 'required' , 
+            'telefonia' => 'required' ,  
+            'transporte_propio' => 'required' , 
+            'transporte_publico' => 'required' ,
             //servicios de la comunidad
             'abastos'=> 'required', 
             'bodegas'=> 'required', 
@@ -64,16 +74,7 @@ class ViviendaRequest extends FormRequest
             'modulos'=> 'required',  
             'cancha'=> 'required', 
             'parque'=> 'required', 
-            //servicios publicos
-            'electricidad' => 'required' , 
-            'aguas_blancas' => 'required' , 
-            'aguas_servidas' => 'required' , 
-            'gas_tuberia' => 'required' , 
-            'gas_bombona' => 'required' , 
-            'recoleccion_desechos' => 'required' , 
-            'telefonia' => 'required' ,  
-            'transporte_propio' => 'required' , 
-            'transporte_publico' => 'required' , 
+             
 
             
         ];

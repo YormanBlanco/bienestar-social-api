@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Área socio económica')
+@section('title', 'Área físico-ambiental')
 
 @section('content_header')
 
@@ -626,7 +626,320 @@
                 <br>
                 <br>
             
-            </div>       
+            </div>   
+
+            <div id="servicios" class="col-md-12" style="display: none;">
+
+                <h2> Servicios publicos </h2>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="electricidad">Electricidad</label>
+                        <select required name="electricidad" id="electricidad" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('electricidad') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('electricidad') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('electricidad'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('electricidad') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="aguas_blancas">Aguas blancas</label>
+                        <select required name="aguas_blancas" id="aguas_blancas" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('aguas_blancas') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('aguas_blancas') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('aguas_blancas'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('aguas_blancas') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="aguas_servidas">Aguas servidas</label>
+                        <select required name="aguas_servidas" id="aguas_servidas" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('aguas_servidas') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('aguas_servidas') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('aguas_servidas'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('aguas_servidas') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="gas_tuberia">Gas por tubería</label>
+                        <select required name="gas_tuberia" id="gas_tuberia" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('gas_tuberia') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('gas_tuberia') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('gas_tuberia'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('gas_tuberia') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="gas_bombona">Gas bombona</label>
+                        <select required name="gas_bombona" id="gas_bombona" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('gas_bombona') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('gas_bombona') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('gas_bombona'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('gas_bombona') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="recoleccion_desechos">Recolección de desechos</label>
+                        <select required name="recoleccion_desechos" id="recoleccion_desechos" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('recoleccion_desechos') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('recoleccion_desechos') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('recoleccion_desechos'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('recoleccion_desechos') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="telefonia">Telefonía</label>
+                        <select required name="telefonia" id="telefonia" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('telefonia') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('telefonia') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('telefonia'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('telefonia') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="transporte_propio">Transporte propio</label>
+                        <select required name="transporte_propio" id="transporte_propio" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('transporte_propio') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('transporte_propio') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('transporte_propio'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('transporte_propio') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="transporte_publico">Transporte público</label>
+                        <select required name="transporte_publico" id="transporte_publico" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('transporte_publico') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('transporte_publico') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('transporte_publico'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('transporte_publico') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+
+                <!-- Boton continuar -->
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn btn-secondary pull-center" id="regresar3" onclick="regresar3()">
+                            <i class="fa fa-arrow-left" aria-hidden="true">  </i>
+                            Anterior página
+                        </button> 
+                        <button type="button" class="btn btn-secondary pull-center" id="continuar4" onclick="continuar4()">
+                            <i class="fa fa-arrow-right" aria-hidden="true">  </i>
+                            Siguiente página
+                        </button> 
+                    </div>
+                </div>
+                <br>
+                <br>
+            
+            </div>  
+
+            <div id="comunidad" class="col-md-12" style="display: none;">
+
+                <h2> Servicios de la comunidad </h2>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="abastos">Abastos</label>
+                        <select required name="abastos" id="abastos" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('abastos') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('abastos') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('abastos'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('abastos') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="bodegas">Bodegas</label>
+                        <select required name="bodegas" id="bodegas" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('bodegas') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('bodegas') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('bodegas'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('bodegas') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="farmacias">Farmacias</label>
+                        <select required name="farmacias" id="farmacias" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('farmacias') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('farmacias') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('farmacias'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('farmacias') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="escuelas">Escuelas</label>
+                        <select required name="escuelas" id="escuelas" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('escuelas') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('escuelas') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('escuelas'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('escuelas') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="liceos">Liceos</label>
+                        <select required name="liceos" id="liceos" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('liceos') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('liceos') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('liceos'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('liceos') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="centros_salud">Centros de salud</label>
+                        <select required name="centros_salud" id="centros_salud" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('centros_salud') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('centros_salud') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('centros_salud'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('centros_salud') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="modulos">Módulos</label>
+                        <select required name="modulos" id="modulos" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('modulos') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('modulos') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('modulos'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('modulos') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="cancha">Cancha</label>
+                        <select required name="cancha" id="cancha" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('cancha') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('cancha') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('cancha'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('cancha') }}
+                            </small>
+                        @endif
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="parque">Parque</label>
+                        <select required name="parque" id="parque" class="form-control">
+                            <option disabled selected>Seleccione</option>
+                            <option value="0" {{ old('parque') =='0' ? 'selected' : '' }} >Si</option>
+                            <option value="1" {{ old('parque') =='1' ? 'selected' : '' }} >No</option>
+                        </select>
+                        @if ($errors->has('parque'))
+                            <small class="form-text text-danger">
+                                {{ $errors->first('parque') }}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+
+
+                <!-- Boton continuar -->
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn btn-secondary pull-center" id="regresar4" onclick="regresar4()">
+                            <i class="fa fa-arrow-left" aria-hidden="true">  </i>
+                            Anterior página
+                        </button> 
+                        <button type="submit" class="btn btn-success pull-center">
+                            Registrar
+                        </button> 
+                    </div>
+                </div>
+                <br>
+                <br>
+            
+            </div>  
+
+
 
         </form>
 
@@ -637,7 +950,7 @@
 
 @section('js')
 <script type="text/javascript"> 
-
+    //---------Primera pagina-----
     //continuar a 2da página
     var continuar = document.getElementById('continuar');
     continuar.onclick = function(){
@@ -664,7 +977,9 @@
         $("#condiciones_alojamiento").hide();
         $("#ubicacion").show();    
     }
+    //---------Primera pagina-----
 
+    //---------Segunda pagina-----
     //continuar a 3era página
     var continuar2 = document.getElementById('continuar2');
     continuar2.onclick = function(){
@@ -693,6 +1008,81 @@
         $("#condiciones_alojamiento").show();  
         $("#eseneres").hide();  
     }
+    //---------Segunda pagina-----
+
+    //---------Tercera pagina-----
+        //continuar a 4ta página
+    var continuar3 = document.getElementById('continuar3');
+    continuar3.onclick = function(){
+        if(
+            $("#juego_de_sala").val() == null || $("#juego_de_comedor").val() == null || $("#camas").val() == '' 
+            || $("#ventiladores").val() == '' || $("#neveras").val() == '' || $("#televisor").val() == ''
+            || $("#microondas").val() == null || $("#computadora").val() == null || $("#radio_equipo").val() == null 
+            || $("#lavadora").val() == null || $("#secadora").val() == null || $("#calentador").val() == null
+            || $("#licuadora").val() == null || $("#extractor_jugo").val() == null || $("#cafetera").val() == null
+            || $("#celular").val() == null || $("#aire_acondicionado").val() == null
+        ){
+            Swal.fire({
+                type: 'error',
+                title: 'Ups...',
+                text: 'No puedes dejar campos vacíos',
+            })
+        }
+        else{
+            $("#ubicacion").hide();
+            $("#condiciones_alojamiento").hide();
+            $("#eseneres").hide();
+            $("#servicios").show();
+        }
+        
+    }
+    //---------Tercera pagina-----
+    
+    //------------- Cuarta pagina --------------
+        //regresar 3era pagina
+    var regresar3 = document.getElementById('regresar3');
+    regresar3.onclick = function(){        
+        $("#ubicacion").hide(); 
+        $("#condiciones_alojamiento").hide();  
+        $("#eseneres").show(); 
+        $("#servicios").hide(); 
+    }
+        //continuar 5ta pagina
+    var continuar4 = document.getElementById('continuar4');
+    continuar4.onclick = function(){
+        if(
+            $("#electricidad").val() == null || $("#aguas_blancas").val() == null || $("#aguas_servidas").val() == null 
+            || $("#gas_tuberia").val() == null || $("#gas_bombona").val() == '' || $("#recoleccion_desechos").val() == null
+            || $("#telefonia").val() == null || $("#transporte_propio").val() == null || $("#transporte_publico").val() == null 
+        ){
+            Swal.fire({
+                type: 'error',
+                title: 'Ups...',
+                text: 'No puedes dejar campos vacíos',
+            })
+        }
+        else{
+            $("#ubicacion").hide();
+            $("#condiciones_alojamiento").hide();
+            $("#eseneres").hide();
+            $("#servicios").hide();
+            $("#comunidad").show();
+        }
+        
+    }
+    //------------- Cuarta pagina --------------
+
+    //------------- Quinta pagina --------------
+        //regresar 4ta pagina
+    var regresar4 = document.getElementById('regresar4');
+    regresar4.onclick = function(){        
+        $("#ubicacion").hide(); 
+        $("#condiciones_alojamiento").hide();  
+        $("#eseneres").hide(); 
+        $("#servicios").show(); 
+        $("#comunidad").hide(); 
+    }
+    //------------- Quinta pagina --------------
 
     function zonaUrbana(id) {
         if (id == 0) {
