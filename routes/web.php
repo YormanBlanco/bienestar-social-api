@@ -16,3 +16,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Estudiante
+Route::resource('estudiante', 'EstudianteController');
+
+//Familia
+Route::resource('family', 'FamilyController');
+//Area socioeconomica
+Route::get('socioeconomic/getfamily/{estudiante_id}', 'SocioEconomicController@getFamilyByEstudianteId')->name('getFamilyByEstudianteId');
+Route::resource('socioeconomic', 'SocioEconomicController');
+
+//Egresos
+Route::resource('egresos', 'EgresosController');
+
+//Vivienda
+Route::resource('vivienda', 'ViviendaController');
+
+//SaludEstudiante
+Route::resource('saludestudiante', 'SaludEstudianteController');
+
+//SocioFamiliar
+Route::resource('sociofamiliar', 'SocioFamiliarController');
+
+//Trabajador social
+Route::resource('trabajadorsocial', 'TrabajadorSocialController');
+
+//Solicitud Beca
+Route::resource('solicitud', 'SolicitudBecaController');

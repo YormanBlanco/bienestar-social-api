@@ -18,7 +18,8 @@ class CreateEstudianteTable extends Migration
             //Datos personales
             $table->string('lastnames', 150);
             $table->string('names', 150);
-            $table->string('cedula', 11);
+            $table->string('cedula_tipo');
+            $table->string('cedula', 11)->unique();
             $table->date('birth_date');
             $table->string('place_birth', 250);
             $table->enum('sex', ['Masculino', 'Femenino']);
