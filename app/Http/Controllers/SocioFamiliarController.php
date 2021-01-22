@@ -28,7 +28,7 @@ class SocioFamiliarController extends Controller
         return view('admin.sociofamiliar.create', compact('estudiante'));
     }
 
-    public function store(Request $request)
+    public function store(SocioFamiliarRequest $request)
     {
         $sf = new Socio_familiar();
         $sf->fill($request->all())->save();

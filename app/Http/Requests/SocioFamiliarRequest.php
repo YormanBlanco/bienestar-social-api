@@ -20,13 +20,31 @@ class SocioFamiliarRequest extends FormRequest
     public function rules()
     {
         return [
-            'relacion_familiar'=> 'nullable|string', 
-            'relacion_academica' => 'nullable|string', 
-            'tiempo_libre'=> 'nullable|string', 
+            'relacion_familiar'=> 'required|string', 
+            'relacion_academica' => 'required|string', 
+            'tiempo_libre'=> 'required|string', 
             'actividades_extra_academicas' => 'required', 
             'cuales_actividades_extra_academicas'=> 'nullable|string', 
-            'destino_beca'=> 'nullable|string', 
+            'destino_beca'=> 'required|string', 
             'observaciones_generales'=> 'nullable|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'El campo :attribute es obligatorio.',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'relacion_familiar' => 'relación familiar',
+            'relacion_academica' => 'relación académica',
+            'tiempo_libre' => 'tiempo libre', 
+            'actividades_extra_academicas'=> 'actividades extra-académicas', 
+            'destino_beca'=> 'detino de beca', 
         ];
     }
 }
