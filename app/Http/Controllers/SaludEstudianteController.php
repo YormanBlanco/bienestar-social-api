@@ -32,8 +32,7 @@ class SaludEstudianteController extends Controller
     {
         $salud = new Salud_estudiante();
         $salud->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Condiciones de salud registradas satisfactoriamente', 'data'=>$salud]);
+        return redirect('sociofamiliar/create')->with('message', 'Condiciones de salud registradas satisfactoriamente');
     }
 
     public function show($id)

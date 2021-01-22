@@ -15,6 +15,7 @@ class SaludEstudianteRequest extends FormRequest
     public function rules()
     {
         return [
+            //estudiante
             'enfermedad'=> 'required', 
             'cual_enfermedad' => 'nullable', 
             'tratamiento_medico'=> 'required', 
@@ -31,6 +32,7 @@ class SaludEstudianteRequest extends FormRequest
             'frecuencia_consume_alcohol' => 'nullable', 
             'consume_drogas'=> 'required', 
             'fuma'=> 'required', 
+            //familiares
             'cancer'=> 'required', 
             'diabetes'=> 'required', 
             'vih_sida'=> 'required', 
