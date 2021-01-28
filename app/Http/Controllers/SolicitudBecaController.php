@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\SolicitudBeca;
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Constants\General;
+
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SolicitudBecaController extends Controller
 {
@@ -12,9 +18,45 @@ class SolicitudBecaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->get('search')){ //si hay uja busqueda
+            $search = $request->get('search');
+            $solicitudes = SolicitudBeca::with([
+                'estudiante:id,lastnames,names,cedula,cedula_tipo',
+                'trabajador_social' => function($query){
+                    $query->select('id','lastnames', 'names', 'cedula');
+                }
+            ])
+                ->orWhere('status', 'LIKE', "%$search%")
+                ->orWhere('uuid', 'LIKE', "%$search%")
+                ->orderBy('created_at', 'DESC')
+                ->paginate(General::PAGINATION_ITEMS);
+    
+            foreach($solicitudes as $solicitud){
+                $created = date("d-m-Y", strtotime($solicitud->created_at));
+                $solicitud->created = $created;
+            }
+
+            return view('admin.solicitud.index', compact('solicitudes'));
+        }
+        else{
+            $solicitudes = SolicitudBeca::with([
+                'estudiante:id,lastnames,names,cedula,cedula_tipo',
+                'trabajador_social' => function($query){
+                    $query->select('id','lastnames', 'names', 'cedula');
+                }
+            ])
+                ->orderBy('created_at', 'DESC')
+                ->paginate(General::PAGINATION_ITEMS);
+    
+            foreach($solicitudes as $solicitud){
+                $created = date("d-m-Y", strtotime($solicitud->created_at));
+                $solicitud->created = $created;
+            }
+
+            return view('admin.solicitud.index', compact('solicitudes'));
+        }
     }
 
     /**

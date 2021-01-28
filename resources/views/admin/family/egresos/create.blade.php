@@ -134,7 +134,7 @@
 
                     <div class="form-group col-md-4">
                         <label for="aporte_to_family">Aporte familiar</label>
-                        <input readonly id="aporte_to_family" type="text" class="form-control" onkeyup="sumar();" placeholder="Aporte familiar" name="aporte_to_family"  onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                        <input readonly id="aporte_to_family" type="text" value="{{$aporte_familiar}}" class="form-control" placeholder="Aporte familiar" name="aporte_to_family" >
                         @if ($errors->has('aporte_to_family'))
                             <small class="form-text text-danger">
                                 {{ $errors->first('aporte_to_family') }}
@@ -284,8 +284,8 @@
     //     });
     // }
     
-    const aporte_to_family = document.getElementById('aporte_to_family');
-    aporte_to_family.value = {{$aporte_familiar}};
+    //const aporte_to_family = document.getElementById('aporte_to_family');
+    //aporte_to_family.value = {{$aporte_familiar}};
 
     function sumar() {
 

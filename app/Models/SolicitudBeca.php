@@ -33,11 +33,11 @@ class SolicitudBeca extends Model
 
     public function estudiante()
     {
-        return $this->belongsTo(Estudiante::class, 'estudiante_id');
+        return $this->belongsTo(Estudiante::class, 'estudiante_id', 'id');
     }
 
     public function trabajador_social()
     {
-        return $this->belongsTo(TrabajadorSocial::class, 'estudiante_id');
+        return $this->belongsTo(TrabajadorSocial::class, 'trabajador_social_id');
     }
 }

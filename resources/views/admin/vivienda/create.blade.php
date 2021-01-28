@@ -949,180 +949,180 @@
 </div>
 
 @section('js')
-<script type="text/javascript"> 
-    //---------Primera pagina-----
-    //continuar a 2da página
-    var continuar = document.getElementById('continuar');
-    continuar.onclick = function(){
-        if(
-            $("#ubicacion_vivienda").val() == '' || $("#zona_urbana").val() == null || $("#zona_rural").val() == null 
-            || $("#zona_industrial").val() == null || $("#tipo_vivienda").val() == null || $("#tenencia_vivienda").val() == null
-            || $("#construccion").val() == null
-        ){
-            Swal.fire({
-                type: 'error',
-                title: 'Ups...',
-                text: 'No puedes dejar campos vacíos',
-            })
+    <script type="text/javascript"> 
+        //---------Primera pagina-----
+        //continuar a 2da página
+        var continuar = document.getElementById('continuar');
+        continuar.onclick = function(){
+            if(
+                $("#ubicacion_vivienda").val() == '' || $("#zona_urbana").val() == null || $("#zona_rural").val() == null 
+                || $("#zona_industrial").val() == null || $("#tipo_vivienda").val() == null || $("#tenencia_vivienda").val() == null
+                || $("#construccion").val() == null
+            ){
+                Swal.fire({
+                    type: 'error',
+                    title: 'Ups...',
+                    text: 'No puedes dejar campos vacíos',
+                })
+            }
+            else{
+                $("#ubicacion").hide();
+                $("#condiciones_alojamiento").show();
+            }
+            
         }
-        else{
-            $("#ubicacion").hide();
-            $("#condiciones_alojamiento").show();
-        }
-        
-    }
-    //regresar primera pagina
-    var regresar = document.getElementById('regresar');
-    regresar.onclick = function(){
-        $("#condiciones_alojamiento").hide();
-        $("#ubicacion").show();    
-    }
-    //---------Primera pagina-----
-
-    //---------Segunda pagina-----
-    //continuar a 3era página
-    var continuar2 = document.getElementById('continuar2');
-    continuar2.onclick = function(){
-        if(
-            $("#habitaciones").val() == '' || $("#cocina").val() == null || $("#comedor").val() == null 
-            || $("#sala").val() == null || $("#salacomedor").val() == null || $("#baño").val() == null
-            || $("#patio").val() == null || $("#total_ambientes").val() == ''
-        ){
-            Swal.fire({
-                type: 'error',
-                title: 'Ups...',
-                text: 'No puedes dejar campos vacíos',
-            })
-        }
-        else{
-            $("#ubicacion").hide();
+        //regresar primera pagina
+        var regresar = document.getElementById('regresar');
+        regresar.onclick = function(){
             $("#condiciones_alojamiento").hide();
-            $("#eseneres").show();
+            $("#ubicacion").show();    
         }
+        //---------Primera pagina-----
+
+        //---------Segunda pagina-----
+        //continuar a 3era página
+        var continuar2 = document.getElementById('continuar2');
+        continuar2.onclick = function(){
+            if(
+                $("#habitaciones").val() == '' || $("#cocina").val() == null || $("#comedor").val() == null 
+                || $("#sala").val() == null || $("#salacomedor").val() == null || $("#baño").val() == null
+                || $("#patio").val() == null || $("#total_ambientes").val() == ''
+            ){
+                Swal.fire({
+                    type: 'error',
+                    title: 'Ups...',
+                    text: 'No puedes dejar campos vacíos',
+                })
+            }
+            else{
+                $("#ubicacion").hide();
+                $("#condiciones_alojamiento").hide();
+                $("#eseneres").show();
+            }
+            
+        }
+        //regresar 2da pagina
+        var regresar2 = document.getElementById('regresar2');
+        regresar2.onclick = function(){        
+            $("#ubicacion").hide(); 
+            $("#condiciones_alojamiento").show();  
+            $("#eseneres").hide();  
+        }
+        //---------Segunda pagina-----
+
+        //---------Tercera pagina-----
+            //continuar a 4ta página
+        var continuar3 = document.getElementById('continuar3');
+        continuar3.onclick = function(){
+            if(
+                $("#juego_de_sala").val() == null || $("#juego_de_comedor").val() == null || $("#camas").val() == '' 
+                || $("#ventiladores").val() == '' || $("#neveras").val() == '' || $("#televisor").val() == ''
+                || $("#microondas").val() == null || $("#computadora").val() == null || $("#radio_equipo").val() == null 
+                || $("#lavadora").val() == null || $("#secadora").val() == null || $("#calentador").val() == null
+                || $("#licuadora").val() == null || $("#extractor_jugo").val() == null || $("#cafetera").val() == null
+                || $("#celular").val() == null || $("#aire_acondicionado").val() == null
+            ){
+                Swal.fire({
+                    type: 'error',
+                    title: 'Ups...',
+                    text: 'No puedes dejar campos vacíos',
+                })
+            }
+            else{
+                $("#ubicacion").hide();
+                $("#condiciones_alojamiento").hide();
+                $("#eseneres").hide();
+                $("#servicios").show();
+            }
+            
+        }
+        //---------Tercera pagina-----
         
-    }
-    //regresar 2da pagina
-    var regresar2 = document.getElementById('regresar2');
-    regresar2.onclick = function(){        
-        $("#ubicacion").hide(); 
-        $("#condiciones_alojamiento").show();  
-        $("#eseneres").hide();  
-    }
-    //---------Segunda pagina-----
+        //------------- Cuarta pagina --------------
+            //regresar 3era pagina
+        var regresar3 = document.getElementById('regresar3');
+        regresar3.onclick = function(){        
+            $("#ubicacion").hide(); 
+            $("#condiciones_alojamiento").hide();  
+            $("#eseneres").show(); 
+            $("#servicios").hide(); 
+        }
+            //continuar 5ta pagina
+        var continuar4 = document.getElementById('continuar4');
+        continuar4.onclick = function(){
+            if(
+                $("#electricidad").val() == null || $("#aguas_blancas").val() == null || $("#aguas_servidas").val() == null 
+                || $("#gas_tuberia").val() == null || $("#gas_bombona").val() == '' || $("#recoleccion_desechos").val() == null
+                || $("#telefonia").val() == null || $("#transporte_propio").val() == null || $("#transporte_publico").val() == null 
+            ){
+                Swal.fire({
+                    type: 'error',
+                    title: 'Ups...',
+                    text: 'No puedes dejar campos vacíos',
+                })
+            }
+            else{
+                $("#ubicacion").hide();
+                $("#condiciones_alojamiento").hide();
+                $("#eseneres").hide();
+                $("#servicios").hide();
+                $("#comunidad").show();
+            }
+            
+        }
+        //------------- Cuarta pagina --------------
 
-    //---------Tercera pagina-----
-        //continuar a 4ta página
-    var continuar3 = document.getElementById('continuar3');
-    continuar3.onclick = function(){
-        if(
-            $("#juego_de_sala").val() == null || $("#juego_de_comedor").val() == null || $("#camas").val() == '' 
-            || $("#ventiladores").val() == '' || $("#neveras").val() == '' || $("#televisor").val() == ''
-            || $("#microondas").val() == null || $("#computadora").val() == null || $("#radio_equipo").val() == null 
-            || $("#lavadora").val() == null || $("#secadora").val() == null || $("#calentador").val() == null
-            || $("#licuadora").val() == null || $("#extractor_jugo").val() == null || $("#cafetera").val() == null
-            || $("#celular").val() == null || $("#aire_acondicionado").val() == null
-        ){
-            Swal.fire({
-                type: 'error',
-                title: 'Ups...',
-                text: 'No puedes dejar campos vacíos',
-            })
+        //------------- Quinta pagina --------------
+            //regresar 4ta pagina
+        var regresar4 = document.getElementById('regresar4');
+        regresar4.onclick = function(){        
+            $("#ubicacion").hide(); 
+            $("#condiciones_alojamiento").hide();  
+            $("#eseneres").hide(); 
+            $("#servicios").show(); 
+            $("#comunidad").hide(); 
         }
-        else{
-            $("#ubicacion").hide();
-            $("#condiciones_alojamiento").hide();
-            $("#eseneres").hide();
-            $("#servicios").show();
+        //------------- Quinta pagina --------------
+
+        function zonaUrbana(id) {
+            if (id == 0) {
+                $("#zona_urbana_tipo").show();
+                $("#zona_urbana_tipo").show();
+            }
+
+            if (id == 1) {
+                $("#zona_urbana_tipo").hide();
+                $("#zona_urbana_tipo").hide();
+            }
         }
+
+        function zonaRural(id) {
+            if (id == 0) {
+                $("#zona_rural_tipo").show();
+                $("#zona_rural_tipo").show();
+            }
+
+            if (id == 1) {
+                $("#zona_rural_tipo").hide();
+                $("#zona_rural_tipo").hide();
+            }
+        }
+
+        function zonaIndustrial(id) {
+            if (id == 0) {
+                $("#zona_industrial_tipo").show();
+                $("#zona_industrial_tipo").show();
+            }
+
+            if (id == 1) {
+                $("#zona_industrial_tipo").hide();
+                $("#zona_industrial_tipo").hide();
+            }
+        }
+
+
         
-    }
-    //---------Tercera pagina-----
-    
-    //------------- Cuarta pagina --------------
-        //regresar 3era pagina
-    var regresar3 = document.getElementById('regresar3');
-    regresar3.onclick = function(){        
-        $("#ubicacion").hide(); 
-        $("#condiciones_alojamiento").hide();  
-        $("#eseneres").show(); 
-        $("#servicios").hide(); 
-    }
-        //continuar 5ta pagina
-    var continuar4 = document.getElementById('continuar4');
-    continuar4.onclick = function(){
-        if(
-            $("#electricidad").val() == null || $("#aguas_blancas").val() == null || $("#aguas_servidas").val() == null 
-            || $("#gas_tuberia").val() == null || $("#gas_bombona").val() == '' || $("#recoleccion_desechos").val() == null
-            || $("#telefonia").val() == null || $("#transporte_propio").val() == null || $("#transporte_publico").val() == null 
-        ){
-            Swal.fire({
-                type: 'error',
-                title: 'Ups...',
-                text: 'No puedes dejar campos vacíos',
-            })
-        }
-        else{
-            $("#ubicacion").hide();
-            $("#condiciones_alojamiento").hide();
-            $("#eseneres").hide();
-            $("#servicios").hide();
-            $("#comunidad").show();
-        }
-        
-    }
-    //------------- Cuarta pagina --------------
-
-    //------------- Quinta pagina --------------
-        //regresar 4ta pagina
-    var regresar4 = document.getElementById('regresar4');
-    regresar4.onclick = function(){        
-        $("#ubicacion").hide(); 
-        $("#condiciones_alojamiento").hide();  
-        $("#eseneres").hide(); 
-        $("#servicios").show(); 
-        $("#comunidad").hide(); 
-    }
-    //------------- Quinta pagina --------------
-
-    function zonaUrbana(id) {
-        if (id == 0) {
-            $("#zona_urbana_tipo").show();
-            $("#zona_urbana_tipo").show();
-        }
-
-        if (id == 1) {
-            $("#zona_urbana_tipo").hide();
-            $("#zona_urbana_tipo").hide();
-        }
-    }
-
-    function zonaRural(id) {
-        if (id == 0) {
-            $("#zona_rural_tipo").show();
-            $("#zona_rural_tipo").show();
-        }
-
-        if (id == 1) {
-            $("#zona_rural_tipo").hide();
-            $("#zona_rural_tipo").hide();
-        }
-    }
-
-    function zonaIndustrial(id) {
-        if (id == 0) {
-            $("#zona_industrial_tipo").show();
-            $("#zona_industrial_tipo").show();
-        }
-
-        if (id == 1) {
-            $("#zona_industrial_tipo").hide();
-            $("#zona_industrial_tipo").hide();
-        }
-    }
-
-
-    
-</script>
+    </script>
 @stop
     
 

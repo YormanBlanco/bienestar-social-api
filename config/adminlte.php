@@ -242,6 +242,11 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text' => 'Solicitudes de beca',
+            'route'  => 'solicitud.index',
+            'icon' => 'fa fa-graduation-cap',
+        ],
+        [
             'text' => 'Estudiantes',
             'route'  => 'estudiante.index',
             'icon' => 'fa fa-graduation-cap',

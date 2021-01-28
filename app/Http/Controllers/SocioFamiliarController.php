@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Socio_familiar;
 use App\Models\Estudiante;
+use App\Models\SolicitudBeca as Solicitud;
+use App\Models\TrabajadorSocial as Trabajador;
 use Illuminate\Http\Request;
 use App\Http\Requests\SocioFamiliarRequest;
 use App\Constants\General;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class SocioFamiliarController extends Controller
 {
@@ -30,10 +33,28 @@ class SocioFamiliarController extends Controller
 
     public function store(SocioFamiliarRequest $request)
     {
+        //guardo la data sociofamiliar
         $sf = new Socio_familiar();
         $sf->fill($request->all())->save();
-        return response()->json(
-            ['message'=>'Estudio socio-familiar registrado satisfactoriamente', 'data'=>$sf]);
+        
+        //por ahora obteniendo único trabajador social registrado desde el seeder
+        $trabajador = Trabajador::latest('id')->pluck('id')->first();
+
+        //genero el codigo
+        $count = Solicitud::all()->count();
+        $code = str_pad(1, 9, 0, STR_PAD_LEFT);
+        if ($count > 0) {
+            $code = str_pad($count + 1, 10, 0, STR_PAD_LEFT);
+        }
+
+        $solicitud = new Solicitud();
+        $solicitud->uuid = $code;
+        $solicitud->status = 0; //por defecto 0 = (en revisión)
+        $solicitud->estudiante_id = $request->estudiante_id;
+        $solicitud->trabajador_social_id = $trabajador;
+        $solicitud->save();
+
+        return redirect('solicitud')->with('message', '¡Solicitud de beca creada satisfactoriamente!');
     }
 
     public function show($id)
